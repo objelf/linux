@@ -2409,6 +2409,7 @@ static int btusb_shutdown_intel(struct hci_dev *hdev)
 
 #ifdef CONFIG_BT_HCIBTUSB_MTK
 
+#define FIRMWARE_MT7663		"mt7663pr2h.bin"
 #define FIRMWARE_MT7668		"mt7668pr2h.bin"
 
 #define HCI_WMT_MAX_EVENT_SIZE		64
@@ -2837,6 +2838,9 @@ static int btusb_mtk_setup(struct hci_dev *hdev)
 	}
 
 	switch (dev_id) {
+	case 0x7663:
+		fwname = FIRMWARE_MT7663;
+		break;
 	case 0x7668:
 		fwname = FIRMWARE_MT7668;
 		break;
@@ -2932,6 +2936,7 @@ static int btusb_mtk_shutdown(struct hci_dev *hdev)
 	return 0;
 }
 
+MODULE_FIRMWARE(FIRMWARE_MT7663);
 MODULE_FIRMWARE(FIRMWARE_MT7668);
 #endif
 
