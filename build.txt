@@ -1,0 +1,9 @@
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- O=out -C . -j 24 V=1 mediatek_v7_defconfig
+
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- O=out -C . -j 24 V=1
+
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- O=out -C . -j 24 V=1 dtbs
+
+cat out/arch/arm/boot/zImage out/arch/arm/boot/dts/mt7623n-rfb-emmc.dtb > zImage-mt7623n-rfb-emmc
+
+./mkimage -A arm -O linux -T kernel -C none -a 80008000 -e 80008000 -n "Linux Kernel Image" -d  zImage-mt7623n-rfb-emmc  uImage_mt7623
